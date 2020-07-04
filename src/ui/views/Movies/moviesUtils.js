@@ -17,18 +17,10 @@ export function getMovieDetailsFromApi(movieId) {
       });
 }
 
-
 export function getMoviesByIdFromApi(moviesIds) {
   const promises = []
 
   moviesIds.forEach( movieId => promises.push(getMovieDetailsFromApi(movieId)))
 
   return Promise.all(promises)
-
-
-  // return fetch(`${apiUrl}/${movieId}?api_key=${apiKey}`)
-  //   .then((response) => response.json())
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
 }
