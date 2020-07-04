@@ -1,8 +1,9 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native"
+import { StyleSheet, Text, View } from "react-native";
 import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
 import FeedAvatar from "./FeedAvatar";
-//import GoogleSignIn from "./GoogleSignIn";
+import GoogleSignIn from '../../components/GoogleSignIn';
 
 class Feed extends React.Component {
     onMoviesListPress = () => {
@@ -18,15 +19,14 @@ class Feed extends React.Component {
             <Text style={styles.welcomText} >Welcom {welcomName}</Text>
 
             <FeedAvatar user={user} />
-
-            { !user && <Text style={styles.loginText} >Please log in to continue.</Text> }
             
             { user 
                 ? <Button title="Movies list" type="outline" raised onPress={this.onMoviesListPress} />
-                : <Text>Sign in with google</Text>
-                // : <GoogleSignIn />
+                : <View  style={styles.loginContainer} >
+                    <Text style={styles.loginText} >Please log in to continue.</Text>
+                    <GoogleSignIn />
+                </View>
             }
-
         </View>
     }
 }
@@ -40,8 +40,14 @@ const styles = StyleSheet.create({
     },
     loginText: {
         fontSize: 16,
-        marginBottom: 24
+    },
+    loginContainer: {
+        alignItems: 'center'
     }
 });
 
-export default Feed
+const mapStateToProps = state => ({
+    user: state.userData.user,
+});
+
+export default connect(mapStateToProps)(Feed)

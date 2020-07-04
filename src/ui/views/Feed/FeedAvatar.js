@@ -5,7 +5,13 @@ const FeedAvatar = props => {
     const { user } = props;
 
     return user 
-        ? <Avatar rounded source={{ uri: user.img }} size="xlarge" /> 
+        ? <Avatar 
+            rounded 
+            source={{ uri: user.photoUrl }} 
+            size="large" 
+            avatarStyle={{ resizeMode: "contain" }} 
+            containerStyle={{ margin: 32 }} 
+        /> 
         : <Avatar rounded icon={{ name: 'account-circle' }} size="xlarge" /> 
 }
 
