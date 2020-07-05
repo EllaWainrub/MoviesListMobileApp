@@ -9,6 +9,7 @@ class MyGoogleSignIn extends React.Component {
         try {
             const result = await Google.logInAsync({
                 iosClientId: '492456680139-uj7kj71m7l3cv2f0avpsk8k1fcsri5u5.apps.googleusercontent.com',
+                androidClientId: '492456680139-mp1mv3sjj1lp3su4feiv0dg43kdegu1l.apps.googleusercontent.com',
                 scopes: ['profile', 'email']
             })
 
